@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+	<!-- We resume the logic in empty_world.launch, changing the name of the world to be launched -->
+	<include file="$(find sawyer_aim)/launch/sawyer_world.launch">
+		<arg name="electric_gripper" value="true"/>
+		<arg name="wrist_camera" value="right_hand_camera" />
+		<arg name="head_camera"  value="head_camera" />
+	</include>
+
+	<!-- send block urdf to param server -->
+	<param name="block" command="$(find xacro)/xacro --inorder $(find sawyer_aim)/models/block/model.urdf" />
+	<!-- spawn block in gazebo -->
+	<!-- <node name="spawn_block" pkg="gazebo_ros" type="spawn_model" args="-urdf -param block -x 0.4225 -y 0.1265 -z 2.0 -model block" respawn="false" output="screen" /> -->
+
+    <!-- send table sdf to param server -->
+	<param name="cafe_table" command="$(find xacro)/xacro --inorder $(find sawyer_aim)/models/cafe_table/model.sdf" />
+	<!-- spawn table in gazebo -->
+	<!-- <node name="spawn_table" pkg="gazebo_ros" type="spawn_model" args="-sdf -param cafe_table -x 0.636840 -y -0.001665 -z 0.0 -model cafe_table" respawn="false" output="screen" />-->
+
+	<!-- Start the Sawyer pick and place demo -->
+	<node pkg="sawyer_aim" type="load_model.py" name="load_model" />
+
+	<!-- Kinect pose -->
+	<!-- <arg name="x" default="0.646222"/> -->
+	<!-- <arg name="y" default="0.000347"/> -->
+	<!-- <arg name="z" default="2.131060"/> -->
+	<!-- <arg name="roll" default="0.0"/> -->
+	<!-- <arg name="pitch" default="1.570790"/> -->
+	<!-- <arg name="yaw" default="-3.1415926"/> -->
+	
+	<arg name="x" default="1.153382"/>
+	<arg name="y" default="0.00"/>
+	<arg name="z" default="1.555089"/>
+	<arg name="roll" default="-0.000001"/>
+	<arg name="pitch" default="0.921377"/>
+	<arg name="yaw" default="-3.141591"/>
+	<!-- send kinect camera urdf to param server -->
+	<param name="kinect_sim" command="$(find xacro)/xacro --inorder $(find sawyer_aim)/models/kinect_aim/model.sdf" />
+	<!-- spawn kinect camera in gazebo -->
+	<node name="spawn_kinect" pkg="gazebo_ros" type="spawn_model" args="-sdf -param kinect_sim -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw) -model kinect_sim" respawn="false" output="screen" />
+
+
+</launch>
