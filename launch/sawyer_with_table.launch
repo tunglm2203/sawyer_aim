@@ -36,7 +36,7 @@
 	<arg name="pitch" default="0.921377"/>
 	<arg name="yaw" default="-3.141591"/>
 	<!-- send kinect camera urdf to param server -->
-	<param name="kinect_sim" command="$(find xacro)/xacro --inorder $(find sawyer_aim)/models/kinect_aim/model.sdf" />
+	<param name="kinect_sim" command="$(find xacro)/xacro --inorder $(find sawyer_aim)/models/kinect_ros/model.sdf" />
 	<!-- spawn kinect camera in gazebo -->
 	<node name="spawn_kinect" pkg="gazebo_ros" type="spawn_model" args="-sdf -param kinect_sim -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw) -model kinect_sim" respawn="false" output="screen" />
 
