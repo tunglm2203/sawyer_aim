@@ -4,14 +4,14 @@
     <link name='link'>
       <pose frame=''>0 0 0 0 -0 0</pose>
       <inertial>
-        <mass>1</mass>
+        <mass>0.1</mass>
         <inertia>
-          <ixx>0.00016874999</ixx>
+          <ixx>100000</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.00016874999</iyy>
+          <iyy>100000</iyy>
           <iyz>0</iyz>
-          <izz>0.00016874999</izz>
+          <izz>100000</izz>
         </inertia>
         <pose frame=''>0 0 0 0 -0 0</pose>
       </inertial>
@@ -23,8 +23,8 @@
       <visual name='visual'>
         <geometry>
           <cylinder>
-            <radius>0.05</radius>
-            <length>0.05</length>
+            <radius>0.04</radius>
+            <length>0.04</length>
           </cylinder>
         </geometry>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -51,8 +51,8 @@
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <cylinder>
-            <radius>0.05</radius>
-            <length>0.05</length>
+            <radius>0.04</radius>
+            <length>0.04</length>
           </cylinder>
         </geometry>
         <surface>
