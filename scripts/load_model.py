@@ -36,6 +36,7 @@ from geometry_msgs.msg import (
     Point,
     Quaternion,
 )
+import intera_interface
 
 
 # 0.616, 0.789126
@@ -110,6 +111,9 @@ def main():
     the loop.
     """
     rospy.init_node("sawyer_aim_table_and_block")
+
+    limb = intera_interface.Limb()
+    limb.move_to_neutral()
     # Load Gazebo Models via Spawning Services
     # Note that the models reference is the /world frame
     # and the IK operates with respect to the /base frame
