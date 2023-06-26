@@ -64,7 +64,7 @@ def load_gazebo_models(table_pose=Pose(position=Point(x=0.616, y=0.0, z=0.0)),
     try:
         spawn_sdf = rospy.ServiceProxy('/gazebo/spawn_sdf_model', SpawnModel)
         resp_sdf = spawn_sdf("cafe_table", table_xml, "/", table_pose, table_reference_frame)
-    except rospy.ServiceException, e:
+    except rospy.ServiceException as e:
         rospy.logerr("Spawn SDF service call failed: {0}".format(e))
     # Spawn Block URDF
     #rospy.wait_for_service('/gazebo/spawn_urdf_model')
@@ -79,7 +79,7 @@ def load_gazebo_models(table_pose=Pose(position=Point(x=0.616, y=0.0, z=0.0)),
     try:
         spawn_urdf = rospy.ServiceProxy('/gazebo/spawn_sdf_model', SpawnModel)
         resp_urdf = spawn_urdf("cylinder", cylinder_xml, "/", block_pose, block_reference_frame)
-    except rospy.ServiceException, e:
+    except rospy.ServiceException as e:
         rospy.logerr("Spawn URDF service call failed: {0}".format(e))
 
 def delete_gazebo_models():
@@ -92,7 +92,7 @@ def delete_gazebo_models():
         resp_delete = delete_model("cafe_table")
         #resp_delete = delete_model("block")
         resp_delete = delete_model("cylinder")
-    except rospy.ServiceException, e:
+    except rospy.ServiceException as e:
         print("Delete Model service call failed: {0}".format(e))
 
 def main():
