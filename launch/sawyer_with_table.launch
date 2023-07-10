@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <launch>
 
-	<arg name="use_table" default="false"/>
-
 	<!-- We resume the logic in empty_world.launch, changing the name of the world to be launched -->
 	<include file="$(find sawyer_aim)/launch/sawyer_world.launch">
 		<arg name="electric_gripper" value="true"/>
@@ -11,12 +9,12 @@
 	</include>
 
 	<!-- send block urdf to param server -->
-	<param if="$(arg use_table)" name="block" command="$(find xacro)/xacro --inorder $(find sawyer_aim)/models/block/model.urdf" />
+	<param name="block" command="$(find xacro)/xacro --inorder $(find sawyer_aim)/models/block/model.urdf" />
 	<!-- spawn block in gazebo -->
 	<!-- <node name="spawn_block" pkg="gazebo_ros" type="spawn_model" args="-urdf -param block -x 0.4225 -y 0.1265 -z 2.0 -model block" respawn="false" output="screen" /> -->
 
     <!-- send table sdf to param server -->
-	<param if="$(arg use_table)" name="cafe_table" command="$(find xacro)/xacro --inorder $(find sawyer_aim)/models/cafe_table/model.sdf" />
+	<param name="cafe_table" command="$(find xacro)/xacro --inorder $(find sawyer_aim)/models/cafe_table/model.sdf" />
 	<!-- spawn table in gazebo -->
 	<!-- <node name="spawn_table" pkg="gazebo_ros" type="spawn_model" args="-sdf -param cafe_table -x 0.636840 -y -0.001665 -z 0.0 -model cafe_table" respawn="false" output="screen" />-->
 
